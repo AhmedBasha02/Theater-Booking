@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Seat } from './models/seat.model';
 import { FoodPackage } from './models/food.model';
-
 @Injectable({
   providedIn: 'root',
 })

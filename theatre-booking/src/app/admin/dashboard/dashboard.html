@@ -11,14 +11,21 @@
       <h5 class="card-title">Booking ID: {{ booking.id }}</h5>
       <p><strong>User:</strong> {{ booking.userId }}</p>
       <p><strong>Show:</strong> {{ booking.showId }}</p>
-      <p><strong>Seats:</strong> {{ booking.seats.join(', ') }}</p>
+      <p><strong>Seats:</strong></p>
+      <ul>
+        <li *ngFor="let seat of booking.seats">{{ seat.id }} - {{ seat.price }} EGP</li>
+      </ul>
+      <p><strong>Seat Total:</strong> {{ booking.seatTotal }} EGP</p>
 
       <div *ngIf="booking.food?.length > 0">
         <p><strong>Food:</strong></p>
         <ul>
           <li *ngFor="let item of booking.food">{{ item.name }} - {{ item.price }} EGP</li>
         </ul>
+        <p><strong>Food Total:</strong> {{ booking.foodTotal || 0 }} EGP</p>
       </div>
+      <h5 class="mt-2">Total Amount: {{ getTotalAmount(booking) }} EGP</h5>
+
       <button class="btn btn-warning me-2" (click)="editBooking(booking.id)">Update</button>
       <button class="btn btn-danger" (click)="cancelBooking(booking.id)">Cancel</button>
     </div>

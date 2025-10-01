@@ -53,6 +53,7 @@ export class AdminDashboardComponent implements OnInit {
     this.bookingService.adminUpdateBooking(id, updatedData);
     this.toast.show('Booking updated');
     this.loadAllBookings(); // Refresh list
+    this.router.navigate(['/booking/seat-selection']);
   }
 
   cancelBooking(id: string): void {
@@ -63,5 +64,9 @@ export class AdminDashboardComponent implements OnInit {
   goToLogin(): void {
     localStorage.removeItem('currentUser'); // ✅ optional: clear session
     this.router.navigate(['/login']);
+  }
+
+  getTotalAmount(booking: any): number {
+    return (booking.seatTotal || 0) + (booking.foodTotal || 0);
   }
 }

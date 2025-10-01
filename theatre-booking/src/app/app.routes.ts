@@ -32,6 +32,8 @@ export const routes: Routes = [
     component: SeatSelectionComponent,
     canActivate: [UserAuthGuard],
   },
+  { path: 'booking/seat-selection/:bookingId', component: SeatSelectionComponent },
+
   {
     path: 'booking/food-selection/:bookingId',
     component: FoodSelectionComponent,
