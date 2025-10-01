@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <h3 class="mb-3">Admin Login</h3>
+
+  <form (ngSubmit)="login()">
+    <div class="mb-3">
+      <input
+        [(ngModel)]="username"
+        name="username"
+        class="form-control"
+        placeholder="Username"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <input
+        [(ngModel)]="password"
+        name="password"
+        type="password"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-dark w-100">Login</button>
+
+    <div class="text-danger mt-2" *ngIf="error">{{ error }}</div>
+  </form>
+  <div class="text-end mt-3">
+  <button class="btn btn-outline-danger" (click)="goToLogin()">
+    Logout & Go to Login
+  </button>
+</div>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <h2>Your Booking History</h2>
+
+  <div *ngIf="bookings.length === 0" class="alert alert-info mt-3">No bookings found.</div>
+
+  <div *ngFor="let booking of bookings" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Booking ID: {{ booking.id }}</h5>
+      <p><strong>Show:</strong> {{ booking.showId }}</p>
+      <p><strong>Seats:</strong></p>
+      <ul>
+        <li *ngFor="let seat of booking.seats">{{ seat.id }} - {{ seat.price }} EGP</li>
+      </ul>
+      <p><strong>Seat Total:</strong> {{ booking.seatTotal }} EGP</p>
+
+      <div *ngIf="booking.food?.length > 0">
+        <p><strong>Food:</strong></p>
+        <ul>
+          <li *ngFor="let item of booking.food">{{ item.name }} - {{ item.price }} EGP</li>
+        </ul>
+        <p><strong>Food Total:</strong> {{ booking.foodTotal || 0 }} EGP</p>
+      </div>
+
+      <h5 class="mt-2">Total Amount: {{ getTotalAmount(booking) }} EGP</h5>
+
+      <button
+        class="btn btn-danger mt-3"
+        (click)="cancelBooking(booking.id, booking.showId, booking.seats)"
+      >
+        Cancel Booking
+      </button>
+    </div>
+  </div>
+  <button class="btn btn-primary" (click)="goToDashboard()" title="Back to your dashboard">
+    <i class="bi bi-house-door-fill"></i> Dashboard
+  </button>
+</div>

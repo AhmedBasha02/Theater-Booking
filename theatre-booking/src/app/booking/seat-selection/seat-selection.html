@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <h2>Select Your Seats</h2>
+
+  <div class="d-flex flex-wrap">
+    <div
+      *ngFor="let seat of seats"
+      class="seat-box m-1 p-2 border text-center"
+      [ngClass]="{
+        'bg-secondary text-white': seat.status === 'available' && !selectedSeats.includes(seat.id),
+        'bg-success text-white': selectedSeats.includes(seat.id),
+        'bg-warning': seat.status === 'booked'
+      }"
+      (click)="toggleSeat(seat)"
+    >
+      {{ seat.id }}
+    </div>
+  </div>
+
+  <button
+    class="btn btn-primary mt-3"
+    (click)="confirmBooking()"
+    [disabled]="selectedSeats.length === 0"
+  >
+    Confirm Booking
+  </button>
+</div>

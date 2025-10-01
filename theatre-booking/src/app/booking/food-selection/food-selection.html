@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h2>Select Food Packages</h2>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let pkg of foodPackages">
+      <div
+        class="card mb-3"
+        [ngClass]="{ 'border-success': selectedFood.includes(pkg) }"
+        (click)="toggleFood(pkg)"
+      >
+        <div class="card-body">
+          <h5 class="card-title">{{ pkg.name }}</h5>
+          <p class="card-text">Price: {{ pkg.price }} EGP</p>
+        </div>
+      </div>
+    </div>
+    <div class="total-box mt-4">
+      <h4>Total Amount: {{ getTotalAmount() }} EGP</h4>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" (click)="confirmFood()" [disabled]="selectedFood.length === 0">
+    Confirm Food Selection
+  </button>
+</div>
